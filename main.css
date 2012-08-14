@@ -1,0 +1,134 @@
+body {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  color: #724c2d;
+}
+table {
+  table-layout: fixed;
+}
+#content {
+	width: 100%;
+	height: 100%;
+}
+#table{
+	table-layout: fixed;
+	width: 100%;
+	height: 100%;
+}
+#table tr td{
+	padding: 10px 0px 10px 10px;
+	background: #bce1dd;
+}
+#header{
+  height: 10px;
+}
+#topListing{
+  height: 65%;
+}
+#topListing td{
+  width: 33%;
+}
+.overflow{
+	overflow: scroll;
+	height: 100%;
+	margin: 0px;
+}
+.listing {
+  padding-right: 10px;
+  border: 0px;
+  font-size: 16px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  list-style-type: none;
+  padding: 0px;
+}
+::-webkit-scrollbar{
+	width: 20px;
+}
+::-webkit-scrollbar-thumb{
+	background-color: #724c2d;
+}
+.cached {
+  color: green;
+}
+.noFocus:focus {
+  outline: none;
+}
+.selected {
+	color: #f8bb84;
+	background-color: #6e8f8c;
+}
+.year {
+	float: right;
+}
+#control {
+  height: 100%;
+  width: 100%;
+}
+
+/* midlertidlig rot */
+.ui-slider {
+position: relative;
+}
+.ui-slider-horizontal {
+height: 100%;
+}
+.ui-slider-vertical {
+height: 100%;
+}
+/* knapper til sliders */
+.ui-widget-content {
+border: 0;
+background: #bce1dd;
+color: #333;
+}
+
+.ui-corner-all {
+border-radius: 0px;
+}
+
+/*tracker*/
+#trackerwrap {
+  padding: 0px !important;
+  min-height: 25px;
+  max-height: 35px;
+}
+#tracker{
+  min-height: 25px;
+  max-height: 35px;
+}
+#tracker a{
+position: absolute;
+z-index: 0;
+width: 1%;
+height: inherit;
+cursor: default;
+background-color: #6e8f8c;
+}
+
+/*volume*/
+#volumewrap {
+  padding: 0px !important;
+  width:40px;
+}
+#volume {
+  width: 100%;
+  height: 100%;
+  min-width: 20px;
+  max-width: 40px;
+}
+#volume a{
+position: absolute;
+z-index: 0;
+height: 20px;
+width: inherit;
+cursor: default;
+background-color: #6e8f8c;
+}
+
+
+#buttonRow img {
+  height: 100%;
+}
+#buttonRow td {
+  height: 40px;
+}

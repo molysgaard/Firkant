@@ -1,0 +1,59 @@
+<html>
+<head>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/jquery-ui-1.8.22.custom.min.js"></script>
+<script src="js/sha256.js"></script>
+
+<link rel="stylesheet" type="text/css" href="main.css" />
+<script src="common.js"></script>
+<script src="queue.js"></script>
+<script src="lib.js"></script>
+<script src="ampache.js"></script>
+<script src="main.js"></script>
+
+<title>Firkant</title>
+</head>
+
+<body>
+<div id="content">
+<table id="table">
+  <tr id="topListing">
+    <td><input type="text" id="artistFilter">Filter</input><ul id="artists" class="overflow listing"></ul></td>
+    <td colspan="3"><ul id="albums" class="overflow listing"></ul></td>
+    <td><ul id="tracks" class="overflow listing"></ul></td>
+  </tr>
+  <tr>
+    <td id="trackerwrap" colspan="5">
+      <div id="tracker"></div>
+    </td>
+  </tr>
+  <tr>
+  <td colspan="2"><ul id="queue" class="overflow listing"></ul></td>
+  <td id="volumewrap"><div id="volume"></div></td>
+  <td colspan="2">
+    <table id="control">
+      <tr id="buttonRow">
+        <td id="playPause"><img id="playPauseImg" src="icons/play.svg"></img></td>
+        <td id="next"><img src="icons/next.svg"></img></td>
+        <td><a href="options.html"><img src="icons/options.svg"></img></a></td>
+        <td></td>
+      </tr>
+      <tr id="titleRow"><td id="curPlayTitle" colspan="4"></td></tr>
+      <tr id="artistRow">
+        <td id="curPlayArtist" colspan="3"></td>
+        <td id="curPlayYear"></td>
+      </tr>
+      <tr id="albumRow">
+        <td id="curPlayAlbum" colspan="3"></td>
+        <td id="curPlayLength"></td>
+      </tr>
+    </table>
+  </td>
+
+  </tr>
+</table>
+</div>
+<audio id="player"></audio>
+</body>
+
+</html>

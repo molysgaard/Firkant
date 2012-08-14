@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Settings</title>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/sha256.js"></script>
+
+<script src="common.js"></script>
+<script src="queue.js"></script>
+<script src="lib.js"></script>
+<script src="options.js"></script>
+</head>
+
+<body>
+<a href="main.html">Back to player</a>
+<button id="flushCache">Flush Cache</button>
+<span>URL:</span><input id="url" type="text"></input>
+<span>User:</span><input id="user" type="text"></input>
+<span>Password/Key:</span><input id="password" type="password"></input>
+<button id="save">Save</button>
+<p>
+<h3>HOTKEYS:</h3>
+<dl>
+  <dt>Space</dt><dd>Toggle play pause.</dd>
+  <dt>Right Arrow</dt><dd>Skip to next song.</dd>
+  <dt>Left click on Artist</dt><dd>Show the Albums of the Artist.</dd>
+  <dt>Left click on Album</dt><dd>Show the Tracks of the Album.</dd>
+  <dt>Left Double Click on Artist/Album/Track</dt><dd>Queue the Artist/Album/Track and begin to play if not already playing.</dd>
+  <dt>Right Click on Artist/Album/Track</dt><dd>Cache the Artist/Album/Track, this saves the files <em>locally</em> so that you can play them whitout internet connection. Cached items are marked with a different color in the listings.</dd>
+  <dt>Left click on item in the Queue</dt><dd>Select the item in the queue.</dd>
+  <dt>Delete</dt><dd>Removes the selected songs from the queue.</dd>
+  <dt>Shift+Delete</dt><dd>Clears the whole queue.</dd>
+</dl>
+</p>
+<p>
+  <h3>Links</h3>
+  <a href="https://github.com/molysgaard/Firkant">GitHub Repository/Source Code</a><br>
+  <a href="https://github.com/molysgaard/Firkant/issues/new">Report bug/issue on GitHub</a>
+</p>
+
+<p>
+<h3>Credits</h3>
+Creator: Morten Olsen Lysgaard <a href="http://mortenlysgaard.com">mortenlysgaard.com</a> <a href="https://github.com/molysgaard/">GitHub</a><br>
+Design: Ola Olsen Lysgaard <a href="http://olalys.com">olalys.com</a>
+</p>
+
+<p>
+<h3>Tecnical Details:</h3>
+When a song is cached it's marked instantaniously, but that doesn't mean that it's downloaded yet. The browser will begin to
+download the songs at once, saving them in the application cache using the html5 file-API.
+If you shut down the app while it's downloading songs, it will continue where it left when you turn it back on (given that you have a internet connection.)
+Currently there is no way of seeing which tracks are already downloaded. This could lead to funky behaviour if you set a lot of
+tracks for caching. Shut down the app before it's done downloading. If you don't have an internet connection when you turn the app back on,
+it will still show the tracks that you have marked for caching but not downloaded yet. Trying to play them will fail, but should not crash the application.
+</p>
+</body>
+</html>
