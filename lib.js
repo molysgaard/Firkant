@@ -249,7 +249,8 @@ Library.prototype.authenticate = function(){
 
   this.loadCache();
   $(window).trigger('changed.library');
-  $.get(url, {}, $.proxy(this.authCallback, this));
+  var prom = $.get(url, {}, $.proxy(this.authCallback, this));
+  return prom;
 }
 
 Library.prototype.authCallback = function(data){
@@ -259,9 +260,24 @@ Library.prototype.authCallback = function(data){
   this.refreshCache();
 }
 
+Library.prototype.fetchCallback = function(data, parseData, retry){
+  var error = data.getElementsByTagName('error')[0];
+  if(error && error.getAttribute('code') == '401' && error.childNodes[0].data == 'Session Expired'){
+    var prom = this.authenticate();
+    prom.done(retry);
+  }
+  else{
+      parseData(data);
+  }
+}
+
 Library.prototype.fetchArtists = function(){
   var url = this.url + "?action=artists&auth=" + this.authKey;
-  $.get(url, {}, $.proxy(this.fetchArtistsCallback, this));
+  var prom = $.get(url);
+  var parseData = $.proxy(this.fetchArtistsCallback, this);
+  var retry = $.proxy(this.fetchArtists, this);
+  prom.done($.proxy(function(data){this.fetchCallback(data,parseData,retry)},this));
+
 }
 Library.prototype.fetchArtistsCallback = function(data){
   arts = data.getElementsByTagName('artist');
@@ -276,9 +292,12 @@ Library.prototype.fetchArtistsCallback = function(data){
 
 Library.prototype.fetchArtistAlbums = function(id){
   var url = this.url + "?action=artist_albums&auth=" + this.authKey + "&filter=" + id;
-  var get = $.get(url);
-  get.done($.proxy(this.fetchArtistAlbumsCallback,this));
-  return get;
+  var prom = $.get(url);
+  var parseData = $.proxy(this.fetchArtistAlbumsCallback, this);
+  var retry = $.proxy(function(){this.fetchArtistAlbums(id)}, this);
+  prom.done($.proxy(function(data){this.fetchCallback(data,parseData,retry)},this));
+
+  return prom;
 }
 Library.prototype.fetchArtistFull = function(id){
   var url = this.url + "?action=artist_albums&auth=" + this.authKey + "&filter=" + id;
@@ -315,10 +334,14 @@ Library.prototype.fetchArtistAlbumsCallback = function(data){
 
 Library.prototype.fetchAlbumTracks = function(id){
   var url = this.url + "?action=album_songs&auth=" + this.authKey + "&filter=" + id;
-  var get = $.get(url);
-  get.done($.proxy(this.fetchAlbumTracksCallback, this));
-  return get;
+
+  var prom = $.get(url);
+  var parseData = $.proxy(this.fetchAlbumTracksCallback, this);
+  var retry = $.proxy(function(){this.fetchAlbumTracks(id)}, this);
+  prom.done($.proxy(function(data){this.fetchCallback(data,parseData,retry)},this));
+  return prom;
 }
+
 Library.prototype.fetchAlbumTracksCallback = function(data){
   song = data.getElementsByTagName('song');
   var ids = [];
