@@ -249,7 +249,7 @@ Library.prototype.authenticate = function(){
 
   this.loadCache();
   $(window).trigger('changed.library');
-  var prom = $.get(url, {}, $.proxy(this.authCallback, this));
+  var prom = $.get(url);
   return prom;
 }
 
@@ -264,7 +264,11 @@ Library.prototype.fetchCallback = function(data, parseData, retry){
   var error = data.getElementsByTagName('error')[0];
   if(error && error.getAttribute('code') == '401' && error.childNodes[0].data == 'Session Expired'){
     var prom = this.authenticate();
-    prom.done(retry);
+    prom.done($.proxy(this.authCallback,this), retry);
+  }
+  else if(error && error.getAttribute('code') == '401' && error.childNodes[0].data == 'Error Invalid Handshake - Invalid Username/Password'){
+    window.location = 'options.html';
+    alert('wrong username/password');
   }
   else{
       parseData(data);

@@ -284,8 +284,6 @@ Ampache.prototype.bind = function(){
   $('#tracker').bind('slidestop', $.proxy(this.setProgress, this));
   $('#volume').bind('slide', $.proxy(this.setVolume, this));
 
-  document.body.ononline = $.proxy(this.lib.authenticate, this); // doesn't work for chrome
-
   setInterval($.proxy(this.updateProgress,this),1000);
 }
 
