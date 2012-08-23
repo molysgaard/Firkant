@@ -4,7 +4,9 @@
 <script src="js/jquery-ui-1.8.22.custom.min.js"></script>
 <script src="js/sha256.js"></script>
 
-<link rel="stylesheet" type="text/css" href="main.css" />
+<style id="mainStyle" type="text/css">
+</style>
+
 <script src="common.js"></script>
 <script src="queue.js"></script>
 <script src="lib.js"></script>
@@ -17,6 +19,12 @@
 <body>
 <div id="content">
 <table id="table">
+  <col width="28%">
+  <col>
+  <col width="25px">
+  <col>
+  <col width="28%">
+
   <tr id="topListing">
     <td><input type="text" id="artistFilter">Filter</input><ul id="artists" class="overflow listing"></ul></td>
     <td colspan="3"><ul id="albums" class="overflow listing"></ul></td>

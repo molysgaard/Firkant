@@ -6,9 +6,12 @@ document.ready = function(){
   var readData = $.proxy(a.lib.authCallback, a.lib);
   var retry = $.proxy(a.lib.authenticate, a.lib);
   prom.done(function(data){a.lib.fetchCallback(data, readData, retry)});
-  prom.fail(function(){
-    window.location = 'options.html'; 
-    alert('The server url you entered could not be reached. Have you remembered to prepend the address with http:// ?');
+  prom.fail(function(e){
+    console.log(e);
+    if(navigator.onLine){
+      window.location = 'options.html'; 
+      alert('The server url you entered could not be reached. Have you remembered to prepend the address with http:// ?');
+    }
   });
 }
 

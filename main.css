@@ -1,6 +1,6 @@
 body {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  color: #724c2d;
+  color: {{ fg }};
 }
 table {
   table-layout: fixed;
@@ -16,7 +16,7 @@ table {
 }
 #table tr td{
 	padding: 10px 0px 10px 10px;
-	background: #bce1dd;
+	background-color: {{ bg }};
 }
 #header{
   height: 10px;
@@ -45,7 +45,7 @@ table {
 	width: 20px;
 }
 ::-webkit-scrollbar-thumb{
-	background-color: #724c2d;
+	background-color: {{ fg }};
 }
 .cached {
   color: green;
@@ -54,8 +54,8 @@ table {
   outline: none;
 }
 .selected {
-	color: #f8bb84;
-	background-color: #6e8f8c;
+	color: {{ fgSel }};
+	background-color: {{ bgSel }};
 }
 .year {
 	float: right;
@@ -78,8 +78,7 @@ height: 100%;
 /* knapper til sliders */
 .ui-widget-content {
 border: 0;
-background: #bce1dd;
-color: #333;
+background-color: {{ bg }};
 }
 
 .ui-corner-all {
@@ -102,7 +101,7 @@ z-index: 0;
 width: 1%;
 height: inherit;
 cursor: default;
-background-color: #6e8f8c;
+background-color: {{ bgSel }};
 }
 
 /*volume*/
@@ -113,8 +112,6 @@ background-color: #6e8f8c;
 #volume {
   width: 100%;
   height: 100%;
-  min-width: 20px;
-  max-width: 40px;
 }
 #volume a{
 position: absolute;
@@ -122,7 +119,7 @@ z-index: 0;
 height: 20px;
 width: inherit;
 cursor: default;
-background-color: #6e8f8c;
+background-color: {{ bgSel }};
 }
 
 

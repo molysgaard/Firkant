@@ -306,9 +306,36 @@ Ampache.prototype.updateProgress = function(){
 }
 
 Ampache.prototype.uiSetup = function(){
+  this.updateCss();
   $('#queue').sortable({placeholder: "ui-state-highlight"});
   $('#queue').disableSelection();
   $('#tracker').slider();
   $('#volume').slider({orientation:'vertical',value:1,min:0,max:1,step:0.002});
 }
 
+Ampache.prototype.updateCss = function(){
+  var templateCss = function(data){
+    var style = JSON.parse(window.localStorage.getItem('style'));
+    if(! style){
+      style = {'fg':'#724c2d', 'bg':'#bce1dd', 'fgSel':'#f8bb84', 'bgSel':'#6e8f8c'};
+      window.localStorage.setItem('style', JSON.stringify(style));
+    }
+    var css = template(data, style);
+    $('#mainStyle').text(css);
+  }
+  var prom = $.get('main.css')
+  prom.done(templateCss);
+}
+
+var template = function(string, mapping){
+  var patt = /{{ (\w+) }}/g;
+  string = string.replace(patt, function(a, id){
+    if(mapping[id]){
+      return mapping[id].toString();
+    }
+    else{
+      return id;
+    }
+  });
+  return string;
+}
